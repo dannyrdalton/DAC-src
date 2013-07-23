@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 	
 	#associations
+	has_many :blog_posts
 	has_and_belongs_to_many :roles
 
 	#validations

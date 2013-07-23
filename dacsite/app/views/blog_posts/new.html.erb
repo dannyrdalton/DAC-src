@@ -3,6 +3,7 @@
 	<%= f.text_field :title, :autofocus => true %><br/>
 	<%= f.label :body %><br/>
 	<%= f.text_area :body %><br/>
+	<%= f.hidden_field :user_id, :value => "#{current_user.id}" %>
 	<%= f.fields_for :tracks do |tracks_form| %>
 		<%= tracks_form.label :link %><br/>
 		<%= tracks_form.text_field :link %><br/>

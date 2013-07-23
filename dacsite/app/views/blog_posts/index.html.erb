@@ -1,0 +1,8 @@
+<% @blogPosts.each do |blogPost| %>
+	<div class="blog-post-title"><%= blogPost.title %></div><br/>
+	<div class="blog-post-body"><%= blogPost.body %></div><br/>
+	<div class="blog-post-tracks">
+		<% blogPost.tracks.each do |track| %>
+			<%= track.url %><br/>	
+		<% end %>
+<% end %>
