@@ -11,82 +11,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130717021639) do
+ActiveRecord::Schema.define(version: 20130723060629) do
 
   create_table "blog_posts", force: true do |t|
-    t.string   "user_id"
-    t.string   "photo_file_name"
     t.string   "title"
     t.string   "body"
-    t.datetime "date_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "comments", force: true do |t|
-    t.string   "user_id"
-    t.string   "blog_post_id"
-    t.datetime "date_time"
-    t.string   "comment"
+  create_table "roles", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "emails", force: true do |t|
-    t.string   "user_id"
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "notifications", force: true do |t|
-    t.string   "user_id"
-    t.string   "type"
-    t.string   "body"
-    t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "passwords", force: true do |t|
-    t.string   "user_id"
-    t.string   "password_digest"
-    t.string   "salt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "playlists", force: true do |t|
-    t.string   "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "profile_pictures", force: true do |t|
-    t.string   "user_id"
-    t.string   "file_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "roles_users", id: false, force: true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
   end
 
   create_table "tracks", force: true do |t|
-    t.string   "blog_post_id"
-    t.string   "playlist_id"
-    t.string   "soundcloud_url"
+    t.integer  "blog_post_id"
+    t.string   "url"
+    t.string   "track_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string   "username"
-    t.string   "password"
-    t.integer  "salt"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "gender"
-    t.string   "country"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username"
   end
+
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

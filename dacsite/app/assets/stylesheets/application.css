@@ -11,3 +11,9 @@
  *= require_self
  *= require_tree .
  */
+
+.site-header {
+	height: 50px;
+	color: white;
+	background-color:black;
+}
