@@ -11,9 +11,35 @@
  *= require_self
  *= require_tree .
  */
+html {
+	color: white;
+	background: rgb(40, 40, 40);
+}
+
+a {
+	color: rgb(240, 240, 240);
+	text-decoration: none;
+}
+
+a:hover {
+	color: rgb(102, 153, 0);
+}
 
 .site-header {
 	height: 50px;
-	color: white;
-	background-color:black;
+	color: rgb(240, 240, 240);
+}
+
+.site-header .logo {
+	display: inline-block;
+	color: rgb(102, 153, 0);
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+	font-size: 2em;
+	font-style: bold;
+}
+
+.site-header .user-nav {
+	display: inline-block;
+	float: right;
 }

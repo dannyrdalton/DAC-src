@@ -1,7 +1,11 @@
 class BlogPostsController < ApplicationController
 	
 	def index
-		@blogPosts = BlogPost.all
+		@blogPosts = BlogPost.all.order("created_at DESC")
+	end
+
+	def show
+		@blogPost = BlogPost.find(params[:id])
 	end
 		
 	def new

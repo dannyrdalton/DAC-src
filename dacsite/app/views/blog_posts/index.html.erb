@@ -1,8 +1,25 @@
-<% @blogPosts.each do |blogPost| %>
-	<div class="blog-post-title"><%= blogPost.title %></div><br/>
-	<div class="blog-post-body"><%= blogPost.body %></div><br/>
-	<div class="blog-post-tracks">
-		<% blogPost.tracks.each do |track| %>
-			<%= track.url %><br/>	
-		<% end %>
+<% content_for :head do %>
+	<title>Digital Artists Collective</title>
 <% end %>
+
+<div class="main-blog-feed">
+	<% @blogPosts.each do |blogPost| %>
+		<div class="blog-post-container">
+			<div class="social-links">
+          <div class="fb-link"></div>
+   		</div>
+			<div class="blog-post-title"><a href="/blog_posts/<%= blogPost.id %>"><%= blogPost.title %></a></div><br/>
+			<div class="blog-post-body">
+        <% blogPost.tracks.each do |track| %>
+          <a href="<%= track.url %>"><img src="<%= track.artwork_url %>"></a><br/>		 	
+				<% end %>
+				<div class="blog-post-utilities">
+          <div class="play-btn"><img src="<%= image_path("play.png") %>"></div>
+          <div class="like-btn"><img src="<%= image_path("heart.png") %>"></div>
+        	<div class="add-btn"><img src="<%= image_path("plus.png") %>"></div>
+				</div>
+				<div class="blog-post-text"><%= blogPost.body %></div>
+			</div>
+		</div>
+	<% end %>
+</div>

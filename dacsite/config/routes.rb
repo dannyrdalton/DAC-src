@@ -7,7 +7,10 @@ Dacsite::Application.routes.draw do
   # You can have the root of your site routed with "root"
  	root :to => 'home#index'
 	
-	resources :blog_posts
+	resources :blog_posts #, :except => ['index']
+	
+	resources :comments
+	# get 'blog' => 'blog_posts#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

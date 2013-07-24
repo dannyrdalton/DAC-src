@@ -12,6 +12,14 @@ class Track < ActiveRecord::Base
 		client = Soundcloud.new(:client_id => 'f116577ada558b6ab3ddc756e60cbc71')	
 		track = client.get('/resolve', :url => url)
 		self.track_id = track.id
-		logger.debug "track id is #{track.id}"
+		self.title = track.title
+		self.artist = track.user.username
+		logger.debug "track artwork url is #{track.artwork_url}"
+		if self.artwork_url
+			self.artwork_url = track.artwork_url
+			self.artwork_url["large"] = "t500x500"
+		else
+			self.artwork_url = "none"
+		end
 	end
 end

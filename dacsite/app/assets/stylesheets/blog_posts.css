@@ -1,0 +1,79 @@
+/* Place all the styles related to the BlogPosts controller here.
+   They will automatically be included in application.css. */
+.main-blog-feed {
+	min-width: 320px;
+	max-width: 768px;
+	margin: 0px auto;
+}
+
+.blog-post-container {
+	width: 100%;
+	min-width: 320px;
+	margin-bottom: 55px;
+}
+
+.blog-post-container .blog-post-title {
+	height: 45px;
+	line-height: 45px;
+	background: rgb(156, 75, 14);
+	font-size: 1.7em;
+	padding-left: 10px;
+}
+
+.blog-post-container .blog-post-body {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	overflow: auto;
+	position: relative;
+}
+
+.blog-post-body img {
+	display: inline;
+	float: left;	
+	width: 150px;
+	margin-right: 20px;
+}
+
+.blog-post-container .social-links {
+	position: relative;
+	top: 263px;
+	width: 150px;
+	height: 50px;
+	background: blue;
+}
+
+.social-links .fb-link {
+	background: blue;
+	padding-left: 50px;
+}
+
+.blog-post-container .blog-post-body .blog-post-text {
+	display: inline-block;
+	width: 538px;
+}
+
+.blog-post-container .blog-post-body .blog-post-utilities {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: inline-block;
+	float: right;
+}
+
+.blog-post-container .play-btn {
+	height: 50px;
+	width: 50px;
+}
+
+.play-btn img, .add-btn img, .like-btn img {
+	width: 95%;
+}
+
+.blog-post-container .add-btn {
+	height: 50px;
+	width: 50px;
+}
+
+.blog-post-container .like-btn {
+	height: 50px;
+	width: 50px;
+}
