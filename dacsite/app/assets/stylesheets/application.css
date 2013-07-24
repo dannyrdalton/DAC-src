@@ -16,6 +16,10 @@ html {
 	background: rgb(40, 40, 40);
 }
 
+img {
+	max-width: 100%;
+}
+
 a {
 	color: rgb(240, 240, 240);
 	text-decoration: none;

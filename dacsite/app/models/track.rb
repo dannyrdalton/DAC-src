@@ -15,11 +15,13 @@ class Track < ActiveRecord::Base
 		self.title = track.title
 		self.artist = track.user.username
 		logger.debug "track artwork url is #{track.artwork_url}"
+		logger.debug "track stream url is #{track.stream_url}"
 		if self.artwork_url
 			self.artwork_url = track.artwork_url
 			self.artwork_url["large"] = "t500x500"
 		else
 			self.artwork_url = "none"
 		end
+		
 	end
 end

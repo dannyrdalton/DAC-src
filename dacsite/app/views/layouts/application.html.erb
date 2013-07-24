@@ -4,7 +4,8 @@
   <%= yield :head %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+  <script src="//connect.soundcloud.com/sdk.js"></script>
+	<%= csrf_meta_tags %>
 </head>
 <body>
 	<div class="site-header">

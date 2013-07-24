@@ -5,21 +5,25 @@
 <div class="main-blog-feed">
 	<% @blogPosts.each do |blogPost| %>
 		<div class="blog-post-container">
-			<div class="social-links">
-          <div class="fb-link"></div>
-   		</div>
-			<div class="blog-post-title"><a href="/blog_posts/<%= blogPost.id %>"><%= blogPost.title %></a></div><br/>
-			<div class="blog-post-body">
-        <% blogPost.tracks.each do |track| %>
-          <a href="<%= track.url %>"><img src="<%= track.artwork_url %>"></a><br/>		 	
-				<% end %>
-				<div class="blog-post-utilities">
-          <div class="play-btn"><img src="<%= image_path("play.png") %>"></div>
-          <div class="like-btn"><img src="<%= image_path("heart.png") %>"></div>
-        	<div class="add-btn"><img src="<%= image_path("plus.png") %>"></div>
+			<div class="blog-post-title"><a href="/blog_posts/<%= blogPost.id %>"><%= blogPost.title %></a></div>
+			<div class="blog-post-image-container">
+				<% blogPost.tracks.each do |track| %>
+          <a href="<%= track.url %>"><img src="<%= track.artwork_url %>"></a>
+				<div class="social-links">
+					<div class="sndcld-link"><a href="<%= track.url %>"><img src="<%= image_path("soundcloud-logo.png") %>"></a></div>
+					<div class="fb-link"><img src="<%= image_path("fb-logo.jpg") %>"></div>
+					<div class="twitter-link"><img src="<%= image_path("twitter-logo.png") %>"></div>
 				</div>
-				<div class="blog-post-text"><%= blogPost.body %></div>
+				<% end %>
 			</div>
+			<div class="blog-post-body"><%= blogPost.body %></div>
+			<div class="blog-post-utilities">
+      	<div class="play-btn"><img src="<%= image_path("play.png") %>"></div>
+        <div class="like-btn"><img src="<%= image_path("like.png") %>"></div>
+        <div class="add-btn"><img src="<%= image_path("add.png") %>"></div>
+      </div>
+			<div style="clear: both; height: 0;"></div>
 		</div>
+		<div style="clear: both; height: 0;"></div>
 	<% end %>
 </div>
