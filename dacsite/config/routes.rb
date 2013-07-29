@@ -1,15 +1,20 @@
 Dacsite::Application.routes.draw do
-  get "home/index"
-  devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login", :sign_out => "logout" }
+ 	root :to => 'home#index'
+	devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login", :sign_out => "logout" }, :controllers => { :sessions => "sessions", :registrations => "registrations", :passwords => "passwords" }
+	
+	namespace :api do
+		resources :blog_posts
+	end
+	resources :blog_posts	
+	match '/login' => 'home#index', via: [:get]
+	match '/register' => 'home#index', via: [:get]
+	match '/forgot-password' => 'home#index', via: [:get]
+	match '/reset-password/*page' => 'home#index', via: [:get]
+	match '/blog' => 'home#index', via: [:get]
+	match	'/blog/*page' => 'home#index', via: [:get]
+	
 	# The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
- 	root :to => 'home#index'
-	
-	resources :blog_posts #, :except => ['index']
-	
-	resources :comments
 	# get 'blog' => 'blog_posts#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -2,8 +2,10 @@
    They will automatically be included in application.css. */
 .main-blog-feed {
 	min-width: 320px;
-	max-width: 768px;
+	max-width: 800px;
 	margin: 0px auto;
+	background: rgb(200, 200, 200);
+	padding: 10px;
 }
 
 .blog-post-container {
@@ -25,7 +27,7 @@
 	float: left;
 	position: relative;
 	width: 150px;
-	margin: 0;
+	margin: 0 0 8px 10px;
 }
 
 .blog-post-image-container .social-links {

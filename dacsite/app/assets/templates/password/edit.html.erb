@@ -1,0 +1,20 @@
+<h2>Change your password</h2>
+<form name="myForm" ng-submit="resetPassword()">
+	<div class="control-group">
+  	<label class="control-label" for="password">New password</label>
+    <div class="controls">
+    	<input type="password" id="password" name="password" placeholder="Password" ng-model="user.password" ng-minlength="2" password-validate required>
+  	</div>
+	</div>
+	<div class="control-group">
+    <label class="control-label" for="password_confirmation">Confirm new password</label>
+   	<div class="controls">
+    	<input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" ng-model="user.password_confirmation" ng-minlength="2" password-validate required>
+  	</div>
+ 	</div>
+	<div class="control-group">
+  	<div class="controls">
+    	<input name="commit" type="submit" value="Change my Password">
+		</div>
+	</div>
+</form>

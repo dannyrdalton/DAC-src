@@ -13,7 +13,7 @@
  */
 html {
 	color: white;
-	background: rgb(40, 40, 40);
+	background: rgb(10, 10, 10);
 }
 
 img {
@@ -31,7 +31,9 @@ a:hover {
 
 .site-header {
 	height: 50px;
-	color: rgb(240, 240, 240);
+	line-height: 50px;
+	color: rgb(245, 245, 245);
+	background: rgb(200, 200, 200);
 }
 
 .site-header .logo {

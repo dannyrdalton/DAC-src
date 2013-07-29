@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="dacsite">
 <head>
   <%= yield :head %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -8,21 +8,33 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="main-container" ng-controller="AppCtrl">
 	<div class="site-header">
-		<div class="logo">Digital Artists Collective</div>
-		<div class="user-nav">
-  		<% if user_signed_in? %>
-    		Signed in as <%= current_user.username %>. Not you?
-    		<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  		<% else %>
-    		<%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  		<% end %>
+		<div class="logo">Digital Artists Collective</div><span ng-click="checkUser()">check</span>
+		<div class="user-nav" ng-controller="SessionCtrl">
+    	<span ng-show="signedIn">
+				Signed in as {{currentUser.username}}. Not you?
+				<span ng-click="destroy()">Sign Out</span>
+			</span>
+			<span ng-hide="signedIn">
+				<a href="/register">Sign Up</a> or <a href="/login">Sign In</a>
+			</span>
 		</div>
 	</div>
 	<p class="notice"><%= notice %></p>
 	<p class="alert"><%= alert %></p>
-
 	<%= yield %>
+	</div>
+<script>
+	$(function() {
+		SC.initialize({
+  		client_id: 'f116577ada558b6ab3ddc756e60cbc71'
+		});
 
+		SC.stream("/tracks/293", function(sound){
+  		sound.play();
+		});
+	});
+</script>
 </body>
 </html>

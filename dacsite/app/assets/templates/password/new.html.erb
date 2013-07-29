@@ -1,0 +1,16 @@
+<h2>Forgot your password?</h2>
+<form name="myForm" ng-submit="sendResetInstructions()">
+	<div class="control-group">
+      <label class="control-label" for="email">Email</label>
+      <div class="controls">
+        <input type="email" id="email" name="email" placeholder="Email" ng-model="user.email" required>
+      </div>
+	</div>
+	<div class="control-group">
+      <div class="controls">
+        <input name="commit" type="submit" value="Send me reset password instructions.">
+      </div>
+	</div>
+</form>
+<a href="/login">Sign In</a><br/>
+<a href="/register">Sign Up</a><br/>
