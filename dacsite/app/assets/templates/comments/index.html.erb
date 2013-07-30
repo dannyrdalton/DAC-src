@@ -1,0 +1,10 @@
+<form name="commentForm" ng-submit="create()">
+	<textarea name="comment" placeholder="Write comment here..." ng-model="comment.text" required></textarea>
+	<input name="commit" type="submit" value="Submit Comment">
+</form>
+<div class="comment-container" ng-repeat="comment in comments">
+	<div class="comment-container">
+		{{comment.text}}
+	</div>
+	<br/>
+</div>

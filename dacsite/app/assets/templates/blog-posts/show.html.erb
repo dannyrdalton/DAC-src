@@ -1,0 +1,35 @@
+<div class="main-blog-feed">
+	<div class="blog-post-container">
+		<div class="blog-post-container">	
+			<div class="blog-post-title">{{blogPost.title}}</div>
+			<div class="blog-post-image-container" ng-repeat="track in blogPost.tracks">
+    		<a ng-href="{{track.url}}"><img ng-src="{{track.artwork_url}}"></a>
+      	<div class="social-links">
+      		<div class="sndcld-link"><a href="{{track.url}}"><img src="<%= image_path("soundcloud-logo.png") %>"></a></div>
+        	<div class="fb-link"><img src="<%= image_path("fb-logo.jpg") %>"></div>
+       		<div class="twitter-link"><img src="<%= image_path("twitter-logo.png") %>"></div>
+      	</div>
+    	</div>
+			<div class="blog-post-body">{{blogPost.body}}</div>
+			<div class="blog-post-utilities">
+				<div class="play-btn"><img src="<%= image_path("play.png") %>"></div>
+     		<div class="like-btn"><img src="<%= image_path("like.png") %>"></div>
+     		<div class="add-btn"><img src="<%= image_path("add.png") %>"></div>	
+			</div>
+			<div style="clear: both; height: 0;"></div>
+		</div>
+		<div style="clear: both; height: 0;"></div>
+	</div>
+	<div class="comments-container" ng-controller="CommentCtrl">
+		<form name="commentForm" ng-submit="create()">
+  		<textarea name="comment" placeholder="Write comment here..." ng-model="comment.text" required></textarea>
+  		<input name="commit" type="submit" value="Submit Comment">
+		</form>
+		<div class="comment-container" ng-repeat="comment in comments">
+  		<div class="comment-container">
+    		{{comment.username}} - {{comment.comment.text}}
+  		</div>
+  	<br/>
+		</div>
+	</div>
+</div>

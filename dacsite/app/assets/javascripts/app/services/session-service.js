@@ -50,6 +50,8 @@ app.service('Session', ['$rootScope', '$cookieStore', 'UserSession', 'UserRegist
 		this.register = function(userRegistration) {
 			userRegistration.$save()
 			.success(function(data, status, headers, config) {
+				console.log('registration success');
+				console.log(data);
 				this.userRegistration = {};
 				$rootScope.$broadcast('registration', { success: true });
 			})

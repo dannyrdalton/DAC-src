@@ -1,0 +1,23 @@
+<h2>New Blog Post</h2>
+
+<form name="blogPostForm" ng-submit="create()">
+	<div class="control-group">
+    <label class="control-label" for="title">Title</label>
+    <div class="controls">
+      <input type="text" id="title" name="title" placeholder="Title" ng-model="blogPost.title" required>
+    </div>
+  </div>
+	<div class="control-group">
+    <label class="control-label" for="body">Body</label>
+    <div class="controls">
+      <textarea id="body" name="body" placeholder="Body" ng-model="blogPost.body" required></textarea>
+    </div>
+  </div>
+	<div class="control-group">
+    <label class="control-label" for="link">Link</label>
+    <div class="controls">
+      <input type="text" id="link" name="link" placeholder="Link" ng-model="blogPost.link" required>
+    </div>
+  </div>
+	<input type="submit" name="commit" value="Submit Post">
+</form>

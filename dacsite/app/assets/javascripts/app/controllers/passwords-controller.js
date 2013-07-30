@@ -13,7 +13,8 @@ app.controller('PasswordCtrl', ['$scope', '$rootScope', '$http', '$state', '$sta
 				$state.transitionTo('login');
 			});
 		};
-
+		
+		//call edit if reset token is present
 		if ($stateParams.resetToken) {
 			$http.get('/users/password/edit?reset_password_token=' + $stateParams.resetToken)
 			.success(function(data, status, headers, config) {

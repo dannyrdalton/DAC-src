@@ -1,28 +1,40 @@
-app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stateParams', 'BlogPost', 
-	function($scope, $http, $location, $state, $stateParams, BlogPost) {
+app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stateParams', '$cookieStore', 'BlogPost', 
+	function($scope, $http, $location, $state, $stateParams, $cookieStore, BlogPost) {
 		$scope.blogPosts = {};
 		$scope.blogPost = {};
 	
 		if ($state.current.name === 'blog') {
 			$scope.blogPosts = BlogPost.query();
+			BlogPost.currentPost = null;
 		}
 
-		if ($state.current.name === 'edit') {
-			$scope.task = BlogPost.get({ id: $stateParams['id'] });
-  		//$http.get('/api/blog_posts' + $stateParams['id'] + '.json').then((function(response) {
-    //		return $scope.task = response.data;
-  	//	}), function(error) {});
+		if ($state.current.name === 'blog post') {
+			if (!BlogPost.currentPost) {
+				$scope.blogPost = $cookieStore.get('_dac_current_blog_post');
+			} else {
+				$scope.blogPost = BlogPost.get({ id: BlogPost.currentPost.id });
+			}
+			console.log($scope.blogPost);
 		}
 
 		$scope.create = function() {
-  		return Task.save({}, {
+  		return BlogPost.save({}, {
     		blog_post: {
+					user_id: $scope.currentUser.id,
       		title: $scope.blogPost.title,
-      		body: $scope.blogPost.body
+      		body: $scope.blogPost.body,
+					tracks_attributes: {
+						0: {
+							link: $scope.blogPost.link
+						}
+					}
     		}
   		}, function(response) {
-   			return $location.path("/blog");
-  		}, function(response) {});
+				console.log(response);
+   			$state.transitionTo('blog');
+  		}, function(response) {
+				console.log(response);
+			});
 		};
 
 		$scope.update = function() {
@@ -39,11 +51,17 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
 		$scope.destroy = function(id) {
   		return $http['delete']('/api/blog_posts/' + id + '.json').then((function(response) {
     		return $http.get('/api/blog_posts.json').then((function(response) {
-      		return $scope.tasks = response.data;
+      		return $scope.blogPosts = response.data;
     		}), function(error) {});
   		}), function(error) {});
 		};
-		
-		return false;
+	
+		$scope.goToPageForPost = function(blogPost) {
+			BlogPost.currentPost = blogPost;
+			$cookieStore.put('_dac_current_blog_post', blogPost);	
+			console.log($cookieStore.get('_dac_current_blog_post'));
+			postUrl = blogPost.title.replace(/[^\w\s]/g, '').replace(/\s+/g, '-').toLowerCase();
+			$state.transitionTo('blog post', { parameterizedTitle: postUrl });
+		};
 	}
 ]);

@@ -26,9 +26,9 @@ class PasswordsController < Devise::PasswordsController
       	flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
       	set_flash_message(:notice, flash_message) if is_navigational_format?
       	sign_in(resource_name, resource)
-      	render :json => resource
+      	render :json => resource.to_json
     	else
-      	render :json => resource.errors
+      	render :json => resource.errors.to_json
     end
 	end
 end
