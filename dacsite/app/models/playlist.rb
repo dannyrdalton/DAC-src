@@ -1,4 +1,5 @@
-class Playlist < ActiveRecord::Base
-	belongs_to :user
-	has_many :tracks
+class Playlist < AWS::Record::HashModel
+	integer_attr :user_id
+	string_attr :playlist
+	timestamps
 end

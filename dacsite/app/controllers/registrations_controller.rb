@@ -1,8 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
 	def create
 		build_resource(sign_up_params)
-
+		
     if resource.save
+			playlist = Playlist.create(:user_id => resource.id)
+			resource.playlist_id = playlist.id
+			resource.save
 			if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_up(resource_name, resource)

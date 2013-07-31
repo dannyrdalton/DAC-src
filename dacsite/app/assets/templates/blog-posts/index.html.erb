@@ -4,7 +4,7 @@
 		<div class="blog-post-container">
       <div class="blog-post-title" ng-click="goToPageForPost(blogPost)">{{blogPost.title}}</div>
       <div class="blog-post-image-container" ng-repeat="track in blogPost.tracks">
-       	<a ng-href="{{track.url}}"><img ng-src="{{track.artwork_url}}"></a>
+       	<img ng-src="{{track.artwork_url}}" ng-click="playFromBlog(track)">
        	<div class="social-links">
           <div class="sndcld-link"><a href="{{track.url}}"><img src="<%= image_path("soundcloud-logo.png") %>"></a></div>
           <div class="fb-link"><img src="<%= image_path("fb-logo.jpg") %>"></div>
@@ -12,8 +12,8 @@
         </div>
       </div>
       <div class="blog-post-body">{{blogPost.body}}</div>
-      <div class="blog-post-utilities">
-        <div class="play-btn"><img src="<%= image_path("play.png") %>"></div>
+      <div class="blog-post-utilities" ng-repeat"track in blogPost.tracks">
+        <div class="play-btn" ng-click="play(track)"><img src="<%= image_path("play.png") %>"></div>
         <div class="like-btn"><img src="<%= image_path("like.png") %>"></div>
         <div class="add-btn"><img src="<%= image_path("add.png") %>"></div>
       </div>

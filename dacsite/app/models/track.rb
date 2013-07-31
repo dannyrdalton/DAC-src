@@ -1,8 +1,6 @@
 class Track < ActiveRecord::Base
 	belongs_to :blog_post
 	
-	#soundcloud client object
-	
 	def link
 		return self.url
 	end

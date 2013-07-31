@@ -9,7 +9,7 @@
 	<meta name="fragment" content="!" />
 </head>
 <body>
-	<div class="main-container" ng-controller="AppCtrl">
+	<div class="main-container" ng-controller="AppCtrl" ui-keydown="{'enter alt-space':'keydown($event)'}">
 	<div class="site-header">
 		<div class="logo">Digital Artists Collective</div><span ng-click="checkUser()">check</span>
 		<div class="user-nav" ng-controller="SessionCtrl">
