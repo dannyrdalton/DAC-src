@@ -42,6 +42,8 @@ gem 'omniauth'
 
 gem 'cancan'
 
+gem 'rolify'
+
 gem 'brakeman', :require => false;
 
 gem 'soundcloud'

@@ -1,5 +1,5 @@
-app.service('MusicPlayer', ['$cookieStore',
-	function($cookieStore) {
+app.service('MusicPlayer', ['$rootScope', '$cookieStore',
+	function($rootScope, $cookieStore) {
 		self = this;
 		SC.initialize({
       client_id: 'f116577ada558b6ab3ddc756e60cbc71'
@@ -17,35 +17,65 @@ app.service('MusicPlayer', ['$cookieStore',
 			}
 		});
 		
-		//private
-		console.log($cookieStore.get('_dac_playlist'));
-		var playlist = $cookieStore.get('_dac_playlist');
-		var currentIndex;
-		var currentSound;
+		//private variables
+		var playlist = [];
+		var currentIndex = -1;
+		var currentTrack = {};
+		var currentSound = {};
 		var playing = false;
-		
-		if (!playlist) {
-			playlist = [];
-			currentIndex = -1;
-			currentTrack = {};
-			currentSound = {};
-		} else {
-			currentIndex = 0;
-			currentTrack = playlist[playlist.length - 1];
-			SC.stream('/tracks/' + currentTrack.track_id, function(sound) {
-				currentSound = sound;
-			});
-		}
+
+		//watchers
+
+		//helper functions
+		var playNewSound = function(sound) {
+			sound.play({
+				onplay: function() {
+					$rootScope.$broadcast('playlist.newSound');
+				},
+      	onfinish: function() {
+       		self.skipFwd();
+       	}
+   		});
+		};	
 		
 		//public
-		this.playPause = function() {
+		//getters
+		this.getPlaylist = function() {
+			return playlist;
+		};
+		
+		//setters
+		this.setInitialPlaylist = function(newPlaylist) {
+			playlist = newPlaylist;
+			if (playlist.playlist !== null) {
+				currentIndex = playlist.length - 1;
+				currentTrack = playlist[playlist.length - 1];
+				$rootScope.$broadcast('playlist.newSound');
+				SC.stream('/tracks/' + currentTrack.track_id, function(sound) {
+					currentSound = sound;
+				});
+			} else {
+				playlist = [];
+			}
+		};
+
+		this.setPlaylist = function(newPlaylist) {
+			playlist = newPlaylist;
+		};
+
+		//music controls
+		this.playPause = function() { 
 			if (currentSound) {
 				if (playing) {
 					playing = false;
 					currentSound.pause();
 				} else {
 					playing = true;
-					currentSound.play();
+					currentSound.play({
+						onfinish: function() {
+							self.skipFwd();
+						}
+					});
 				}
 			}	
 		};
@@ -61,19 +91,25 @@ app.service('MusicPlayer', ['$cookieStore',
 					playlist.splice(playlist.indexOf(track), 1);
 				}
 				playlist.push(track);
-				$cookieStore.put('_dac_playlist', playlist);
 				currentIndex = playlist.length - 1;
 				currentTrack = track;
 				currentSound = sound;
 				playing = true;
+				playNewSound(sound);
+			});
+		};
+
+		this.playFromPlaylist = function(track) {
+			SC.stream('/tracks/' + track.track_id, function(sound) {
+				if (playing) {
+					currentSound.stop();
+				}
+				currentIndex = playlist.indexOf(track);
+				currentTrack = playlist[currentIndex];
+				currentSound = sound;
+				playing = true;
 				sound.play({
-					onplay: function() {
-						console.log('weeoooooo');
-					},
-					whileplaying: function() {
-					},
 					onfinish: function() {
-						console.log('yeahhhh buddyyy');
 						self.skipFwd();
 					}
 				});

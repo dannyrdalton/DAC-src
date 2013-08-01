@@ -5,6 +5,7 @@ Dacsite::Application.routes.draw do
 	namespace :api do
 		resources :blog_posts
 		resources :comments
+		resources :playlists
 	end
 	
 	resources :blog_posts

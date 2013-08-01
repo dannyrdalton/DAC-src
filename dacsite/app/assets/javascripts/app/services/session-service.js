@@ -37,6 +37,7 @@ app.service('Session', ['$rootScope', '$cookieStore', 'UserSession', 'UserRegist
 			.success(function() {
 				$cookieStore.put('_dac_user', null);
 				console.log($cookieStore.get('_dac_user'));
+				$cookieStore.put('_dac_playlist', null);
 				this.signedIn = false;
 				console.log(this.signedIn);
 				this.userSession = new UserSession({ 'username': '', 'password': '', 'remember_me': false });
