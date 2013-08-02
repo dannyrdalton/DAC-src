@@ -3,7 +3,7 @@ class SessionsController < Devise::SessionsController
 		self.resource = warden.authenticate!(auth_options)
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-		render :json => current_user.to_json
+		render :json => { :user => current_user, :roles => current_user.roles }
 	end
 
 	def destroy

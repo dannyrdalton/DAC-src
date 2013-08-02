@@ -12,6 +12,7 @@
 	<div class="main-container" ng-controller="AppCtrl">
 	<div class="site-header">
 		<div class="logo">Digital Artists Collective</div><span ng-click="checkUser()">check</span>
+		<span ng-show="isAdmin()">I'm an admin!</span>
 		<div class="user-nav" ng-controller="SessionCtrl">
     	<span ng-show="signedIn">
 				Signed in as {{currentUser.username}}. Not you?

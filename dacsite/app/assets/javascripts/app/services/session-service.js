@@ -15,6 +15,8 @@ app.service('Session', ['$rootScope', '$cookieStore', 'UserSession', 'UserRegist
 			if (!$cookieStore.get('_dac_user')) {
 				userSession.$save()
 				.success(function(data, status, headers, config) {
+					data.user.roles = data.roles;
+					data = data.user;
 					$cookieStore.put('_dac_user',	data);
 					console.log('user:');
 					console.log($cookieStore.get('_dac_user'));

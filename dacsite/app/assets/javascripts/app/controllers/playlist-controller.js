@@ -12,7 +12,11 @@ app.controller('PlaylistCtrl', ['$scope', 'MusicPlayer',
 		};
 
 		//events
-		$scope.$on('playlist.newSound', function(event, data) {
+		$scope.$on('logout', function(event, data) {
+			$scope.playlist = [];
+		});	
+	
+		$scope.$on('playlist.change', function(event, data) {
 			$scope.playlist = MusicPlayer.getPlaylist();
 		});
 	}

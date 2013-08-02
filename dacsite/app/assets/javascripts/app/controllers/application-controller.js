@@ -3,6 +3,8 @@ function($scope, $state, $http, $cookieStore, $timeout, MusicPlayer, Playlist) {
 
 	$scope.currentUser = $cookieStore.get('_dac_user');
 	
+	//need isAdmin
+	
 	//set MusicPlayerPlaylist
 	if ($scope.currentUser) {
 		Playlist.get({ id: $scope.currentUser.playlist_id }, function(response) {
@@ -26,7 +28,6 @@ function($scope, $state, $http, $cookieStore, $timeout, MusicPlayer, Playlist) {
 	
 	$scope.playFromBlog = function(track) {
 		MusicPlayer.playFromBlog(track);
-				//Playlist.update({ id: $scope.currentUser.playlist_id, playlist: MusicPlayer.getPlaylist() });
 	};
 
 	$scope.skipBack = function() {
@@ -45,7 +46,7 @@ function($scope, $state, $http, $cookieStore, $timeout, MusicPlayer, Playlist) {
 				var playlist = JSON.parse(response.playlist);
 				console.log('playlist from server');
 				console.log(playlist);
-				MusicPlayer.setPlaylist(playlist);
+				MusicPlayer.setInitialPlaylist(playlist);
 			});
 		}
 	});	
@@ -53,10 +54,11 @@ function($scope, $state, $http, $cookieStore, $timeout, MusicPlayer, Playlist) {
 	$scope.$on('logout', function(event, data) {
 		if (data.success) {
 			$scope.currentUser = null;
+			MusicPlayer.setPlaylist([]);
 		}
 	});
 
-	$scope.$on('playlist.newSound', function(event, data) {
+	$scope.$on('playlist.change', function(event, data) {
     console.log('playlist:');
 		console.log(MusicPlayer.getPlaylist());
 		if ($scope.currentUser) {

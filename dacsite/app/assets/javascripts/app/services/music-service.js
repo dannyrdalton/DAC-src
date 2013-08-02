@@ -27,16 +27,33 @@ app.service('MusicPlayer', ['$rootScope', '$cookieStore',
 		//watchers
 
 		//helper functions
+		//for a track that is not already on the playlist (or is on the playlist and played from the blog)
 		var playNewSound = function(sound) {
 			sound.play({
 				onplay: function() {
-					$rootScope.$broadcast('playlist.newSound');
+					$rootScope.$broadcast('playlist.change');
 				},
       	onfinish: function() {
        		self.skipFwd();
        	}
    		});
-		};	
+		};
+		
+		//checks whether or not the playlist contains a given track. uses track_id (which is the soundcloud API id) to check for sameness
+		var containsTrack = function(playlist, track) {
+			for (var i = 0; i < playlist.length; i++) {
+				if (playlist[i].track_id === track.track_id) return true;
+			}
+			return false;
+		};
+
+		//finds index of a given track in the playlist
+		var indexOfTrack = function(playlist, track)	 {
+			for (var i = 0; i < playlist.length; i++) {
+				if (playlist[i].track_id === track.track_id) return i;
+			}
+			return -1;
+		};
 		
 		//public
 		//getters
@@ -50,7 +67,7 @@ app.service('MusicPlayer', ['$rootScope', '$cookieStore',
 			if (playlist.playlist !== null) {
 				currentIndex = playlist.length - 1;
 				currentTrack = playlist[playlist.length - 1];
-				$rootScope.$broadcast('playlist.newSound');
+				$rootScope.$broadcast('playlist.change');
 				SC.stream('/tracks/' + currentTrack.track_id, function(sound) {
 					currentSound = sound;
 				});
@@ -86,9 +103,9 @@ app.service('MusicPlayer', ['$rootScope', '$cookieStore',
 					currentSound.stop();
 				}
 				//if track already in playlist, move track to front of playlist
-				if (playlist.indexOf(track) !== -1) {
+				if (containsTrack(playlist, track)) {
 					console.log(playlist);
-					playlist.splice(playlist.indexOf(track), 1);
+					playlist.splice(indexOfTrack(playlist, track), 1);
 				}
 				playlist.push(track);
 				currentIndex = playlist.length - 1;
@@ -104,7 +121,7 @@ app.service('MusicPlayer', ['$rootScope', '$cookieStore',
 				if (playing) {
 					currentSound.stop();
 				}
-				currentIndex = playlist.indexOf(track);
+				currentIndex = indexOfTrack(playlist, track);
 				currentTrack = playlist[currentIndex];
 				currentSound = sound;
 				playing = true;
