@@ -14,7 +14,7 @@
       <div class="blog-post-body">{{blogPost.body}}</div>
       <div class="blog-post-utilities" ng-repeat"track in blogPost.tracks">
         <div class="play-btn" ng-click="play(track)"><img src="<%= image_path("play.png") %>"></div>
-        <div class="like-btn"><img src="<%= image_path("like.png") %>"></div>
+        <div class="like-btn" ng-click="like(blogPost)"><img src="<%= image_path("like.png") %>"></div>
         <div class="add-btn"><img src="<%= image_path("add.png") %>"></div>
       </div>
       <div style="clear: both; height: 0;"></div>

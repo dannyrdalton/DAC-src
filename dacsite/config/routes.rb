@@ -3,7 +3,11 @@ Dacsite::Application.routes.draw do
 	devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login", :sign_out => "logout" }, :controllers => { :sessions => "sessions", :registrations => "registrations", :passwords => "passwords", :confirmations => "confirmations" }
 	
 	namespace :api do
-		resources :blog_posts
+		resources :blog_posts do
+			member do
+				get 'like'
+			end
+		end
 		resources :comments
 		resources :playlists
 	end

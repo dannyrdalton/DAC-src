@@ -18,7 +18,18 @@ class Api::BlogPostsController < Api::BaseController
 	end
 
 	def destory
-		respond_width :api, BlogPost.destroy(params[:id])
+		respond_with :api, BlogPost.destroy(params[:id])
+	end
+
+	def like
+		liked = current_user.already_liked_blog_post(params[:id])
+		if !liked
+			blogPost = BlogPost.find(params[:id])
+			current_user.likes << blogPost
+			render :json => { :success => true }
+		else
+			render :json => { :success => false }
+		end
 	end
 
 	private

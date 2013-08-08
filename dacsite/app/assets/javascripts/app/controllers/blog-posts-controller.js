@@ -16,7 +16,8 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
 			}
 			console.log($scope.blogPost);
 		}
-
+		
+		//create blog post
 		$scope.create = function() {
   		return BlogPost.save({}, {
     		blog_post: {
@@ -37,6 +38,7 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
 			});
 		};
 
+		//update blog post
 		$scope.update = function() {
   		return $http.put("/api/blog_posts/" + $scope.blogPost.id + '.json', {
     		blog_post: {
@@ -48,6 +50,7 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
   		}), function(error) {});
 		};
 		
+		//delete blog post
 		$scope.destroy = function(id) {
   		return $http['delete']('/api/blog_posts/' + id + '.json').then((function(response) {
     		return $http.get('/api/blog_posts.json').then((function(response) {
@@ -56,6 +59,16 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
   		}), function(error) {});
 		};
 	
+		//adds a blog post to a users list of 'liked' posts
+		$scope.like = function(blogPost) {
+			console.log(blogPost);
+			$http.get('/api/blog_posts/' + blogPost.id + '/like.json')
+			.success(function(data, status, headers, config) {
+				console.log(data);
+			});	
+		};
+	
+		//navigates browser to the url for an individual blog post
 		$scope.goToPageForPost = function(blogPost) {
 			BlogPost.currentPost = blogPost;
 			$cookieStore.put('_dac_current_blog_post', blogPost);	

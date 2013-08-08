@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130801234818) do
+ActiveRecord::Schema.define(version: 20130808002724) do
+
+  create_table "blog_post_tags", force: true do |t|
+    t.integer  "blog_post_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "blog_posts", force: true do |t|
     t.integer  "user_id"
@@ -35,6 +42,12 @@ ActiveRecord::Schema.define(version: 20130801234818) do
     t.datetime "updated_at"
   end
 
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tracks", force: true do |t|
     t.integer  "blog_post_id"
     t.string   "title"
@@ -42,6 +55,13 @@ ActiveRecord::Schema.define(version: 20130801234818) do
     t.string   "url"
     t.string   "artwork_url"
     t.string   "track_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "blog_post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

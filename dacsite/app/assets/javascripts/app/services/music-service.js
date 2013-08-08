@@ -64,7 +64,7 @@ app.service('MusicPlayer', ['$rootScope', '$cookieStore',
 		//setters
 		this.setInitialPlaylist = function(newPlaylist) {
 			playlist = newPlaylist;
-			if (playlist.playlist !== null) {
+			if (playlist !== null) {
 				currentIndex = playlist.length - 1;
 				currentTrack = playlist[playlist.length - 1];
 				$rootScope.$broadcast('playlist.change');
