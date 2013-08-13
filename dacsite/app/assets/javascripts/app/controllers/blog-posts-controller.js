@@ -2,7 +2,7 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
 	function($scope, $http, $location, $state, $stateParams, $cookieStore, BlogPost) {
 		$scope.blogPosts = {};
 		$scope.blogPost = {};
-	
+		
 		if ($state.current.name === 'blog') {
 			$scope.blogPosts = BlogPost.query();
 			BlogPost.currentPost = null;
@@ -16,10 +16,19 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
 			}
 			console.log($scope.blogPost);
 		}
+
+		if ($state.current.name === 'blog post tag') {
+			console.log('boop');
+			$http.get('/api/blog_posts/showTag?tagName=' + $stateParams.tagName)
+			.success(function(data, status, headers, config) {
+				$scope.blogPosts = data;
+			});
+		}
 		
 		//create blog post
 		$scope.create = function() {
-  		return BlogPost.save({}, {
+  		tags = $scope.blogPost.tags.split(', ');
+			return BlogPost.save({}, {
     		blog_post: {
 					user_id: $scope.currentUser.id,
       		title: $scope.blogPost.title,
@@ -29,7 +38,8 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
 							link: $scope.blogPost.link
 						}
 					}
-    		}
+    		},
+				tags: tags
   		}, function(response) {
 				console.log(response);
    			$state.transitionTo('blog');
@@ -73,6 +83,7 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
 			BlogPost.currentPost = blogPost;
 			$cookieStore.put('_dac_current_blog_post', blogPost);	
 			console.log($cookieStore.get('_dac_current_blog_post'));
+			//parameterize title
 			postUrl = blogPost.title.replace(/[^\w\s]/g, '').replace(/\s+/g, '-').toLowerCase();
 			$state.transitionTo('blog post', { parameterizedTitle: postUrl });
 		};

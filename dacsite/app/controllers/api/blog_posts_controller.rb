@@ -8,8 +8,15 @@ class Api::BlogPostsController < Api::BaseController
 		respond_with :api, BlogPost.find(params[:id])
 	end
 
+	def showTag
+		respond_with :api, BlogPost.joins(:tags).where("tags.name" => params[:tagName])
+	end
+
 	def create
 		blogPost = BlogPost.create(blog_post_params)
+		params[:tags].each do |tag|
+			blogPost.addTag(tag)
+		end
 		respond_with :api, blogPost
 	end
 

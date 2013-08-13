@@ -8,4 +8,17 @@ class BlogPost < ActiveRecord::Base
 	
 	
 	accepts_nested_attributes_for :tracks
+
+	def addTag(tagName)
+		tag = Tag.find_by_name(tagName)
+		if tag
+			self.tags << tag
+		else 
+			tag = Tag.new(:name => tagName)
+			tag.save
+			self.tags << tag
+		end
+		self.save
+	end
+
 end

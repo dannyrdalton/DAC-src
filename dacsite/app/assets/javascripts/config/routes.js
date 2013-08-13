@@ -89,5 +89,14 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 				templateUrl: '/assets/blog-posts/show.html.erb'
 			}
 		}
+	}).state('blog post tag', {
+		parent: 'default',
+		url: '/blog/tags/:tagName',
+		views: {
+			"": {
+				controller: 'BlogPostCtrl',
+				templateUrl: '/assets/blog-posts/index.html.erb'
+			}
+		}
 	});
 }]);

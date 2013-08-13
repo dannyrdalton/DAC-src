@@ -7,6 +7,9 @@ Dacsite::Application.routes.draw do
 			member do
 				get 'like'
 			end
+			collection do
+				get 'showTag'
+			end
 		end
 		resources :comments
 		resources :playlists

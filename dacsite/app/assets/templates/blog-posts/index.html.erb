@@ -11,7 +11,10 @@
           <div class="twitter-link"><img src="<%= image_path("twitter-logo.png") %>"></div>
         </div>
       </div>
-      <div class="blog-post-body">{{blogPost.body}}</div>
+      <div class="blog-post-body">
+				{{blogPost.body}}<br/>
+				Tags: <div ng-repeat="tag in blogPost.tags"><div><a ng-href="/blog/tags/{{tag.name}}">{{tag.name}}</a></div></div>
+			</div>
       <div class="blog-post-utilities" ng-repeat"track in blogPost.tracks">
         <div class="play-btn" ng-click="play(track)"><img src="<%= image_path("play.png") %>"></div>
         <div class="like-btn" ng-click="like(blogPost)"><img src="<%= image_path("like.png") %>"></div>
