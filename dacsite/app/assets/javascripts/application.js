@@ -15,6 +15,7 @@
 //= require angular-resource
 //= require angular-ui-states
 //= require angular-cookies
+//= require angular-ui-utils
 //= require app/main
 //= require_tree ./config
 //= require_tree ./app

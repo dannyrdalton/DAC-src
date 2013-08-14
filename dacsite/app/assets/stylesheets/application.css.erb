@@ -1,0 +1,91 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+html {
+	color: white;
+	background: url(<%= asset_data_uri 'burried.png' %>);
+}
+
+img {
+	max-width: 100%;
+}
+
+a {
+	color: rgb(240, 240, 240);
+	text-decoration: none;
+}
+
+a:hover {
+	color: rgb(102, 153, 0);
+}
+
+.logo {
+	position: fixed;
+	top: 7px;
+	left: 12.5px;
+	z-index: 3;
+}
+
+.logo img {
+	height: 107.5px;
+}
+
+.header-container {
+	position: fixed;
+	width: 100%;
+	z-index: 2;
+}
+
+.site-header {
+	height: 50px;
+	line-height: 50px;
+	color: rgb(245, 245, 245);
+	background: rgb(24, 74, 45);
+	border-bottom: 1px solid black;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.logo-text {
+	display: inline-block;
+	margin: 7px 0 0 173px;
+}
+
+.logo-text img {
+	height: 36px;
+}
+
+.site-header .user-nav {
+	display: inline-block;
+	float: right;
+}
+
+.player-header {
+	height: 37.5px;
+	line-height: 37.5px;
+	background: rgb(73, 71, 72);
+}
+
+.player-controls {
+	margin: 0 0 0 200px;
+}
+
+.filler {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 87.5px;
+	background: url(<%= asset_data_uri 'burried.png' %>);
+	z-index: 1
+}

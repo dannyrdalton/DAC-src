@@ -16,6 +16,10 @@ app.controller('PlaylistCtrl', ['$scope', 'MusicPlayer',
 			$scope.playlist = [];
 		});	
 	
+		$scope.$on('playlist.new', function(event, data) {
+			$scope.playlist = MusicPlayer.getPlaylist();
+		});
+
 		$scope.$on('playlist.change', function(event, data) {
 			$scope.playlist = MusicPlayer.getPlaylist();
 		});

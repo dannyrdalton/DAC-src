@@ -1,1 +1,1 @@
-this.app = angular.module('dacsite', ['ngResource', 'ngCookies', 'ui.compat']);
+this.app = angular.module('dacsite', ['ngResource', 'ngCookies', 'ui.compat', 'ui.validate']);

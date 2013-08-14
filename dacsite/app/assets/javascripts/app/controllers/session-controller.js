@@ -2,7 +2,8 @@ app.controller('SessionCtrl', ['$scope', '$state', '$cookieStore', 'Session',
 	function($scope, $state, $cookieStore, Session) {
 		$scope.session = Session.userSession;
 		
-		$scope.signedIn = Session.signedIn;
+		$scope.loginError = false;
+		$scope.loginErrorMessage = "";
 		
 		$scope.create = function() {
 			Session.login($scope.session);
@@ -16,18 +17,14 @@ app.controller('SessionCtrl', ['$scope', '$state', '$cookieStore', 'Session',
 			console.log('login');
 			console.log(data);
 			if (data.success) {
-				$scope.signedIn = true;
 				$scope.session.username = "";
 				$scope.session.password = "";
+				$scope.session.remember_me = false;
 				$state.transitionTo('blog');
+			} else {
+				$scope.loginErrorMessage = data.error;
+				$scope.loginError = true;
 			}		
-		});
-		
-		$scope.$on('logout', function(event, data) {
-			console.log('logout');
-			if (data.success) {
-				$scope.signedIn = false;
-			}
 		});
 	}
 ]);

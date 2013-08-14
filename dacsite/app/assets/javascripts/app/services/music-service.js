@@ -67,7 +67,8 @@ app.service('MusicPlayer', ['$rootScope', '$cookieStore',
 			if (playlist !== null) {
 				currentIndex = playlist.length - 1;
 				currentTrack = playlist[playlist.length - 1];
-				$rootScope.$broadcast('playlist.change');
+				$rootScope.$broadcast('playlist.new');
+				//preload first track in playlist so user can click play right away
 				SC.stream('/tracks/' + currentTrack.track_id, function(sound) {
 					currentSound = sound;
 				});

@@ -1,15 +1,12 @@
-app.controller('AppCtrl', ['$scope', '$state', '$http', '$cookieStore', '$timeout', 'MusicPlayer', 'Playlist', 
-function($scope, $state, $http, $cookieStore, $timeout, MusicPlayer, Playlist) {
+app.controller('AppCtrl', ['$scope', '$http', '$cookieStore', 'MusicPlayer', 'Playlist', 
+function($scope, $http, $cookieStore, MusicPlayer, Playlist) {
 
 	$scope.currentUser = $cookieStore.get('_dac_user');
-	
-	//need isAdmin
 	
 	//set MusicPlayerPlaylist
 	if ($scope.currentUser) {
 		Playlist.get({ id: $scope.currentUser.playlist_id }, function(response) {
 			var playlist = JSON.parse(response.playlist);
-			console.log('playlist from server');
       console.log(playlist);
 			MusicPlayer.setInitialPlaylist(playlist);	
 		});
@@ -19,8 +16,7 @@ function($scope, $state, $http, $cookieStore, $timeout, MusicPlayer, Playlist) {
 		console.log($scope.currentUser);
 		console.log(MusicPlayer.getPlaylist());
 	};
-
-
+	
 	//control of MusicPlayer
 	$scope.playPause = function() {
 		MusicPlayer.playPause();
@@ -62,10 +58,7 @@ function($scope, $state, $http, $cookieStore, $timeout, MusicPlayer, Playlist) {
     console.log('playlist:');
 		console.log(MusicPlayer.getPlaylist());
 		if ($scope.currentUser) {
-			$http.put('/api/playlists/' + $scope.currentUser.playlist_id, { playlist: MusicPlayer.getPlaylist() })
-    	.success(function(data, status, headers, config) {
-				console.log(data);
-   		});
+			$http.put('/api/playlists/' + $scope.currentUser.playlist_id, { playlist: MusicPlayer.getPlaylist() });
 		}
 	});
 

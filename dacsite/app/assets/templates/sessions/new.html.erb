@@ -3,13 +3,13 @@
   <div class="control-group">
     <label class="control-label" for="username">Username</label>
     <div class="controls">
-      <input type="text" id="username" name="username" placeholder="Username" ng-model="session.username" ng-minlength="2" required>
+      <input type="text" id="username" name="username" placeholder="Username" ng-model="session.username" ng-minlength="3" required>
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="password">Password</label>
       <div class="controls">
-        <input type="password" id="password" name="password" placeholder="Password" ng-model="session.password" ng-minlength="2" password-validate required>
+        <input type="password" id="password" name="password" placeholder="Password" ng-model="session.password" ng-minlength="8" password-validate required>
       </div>
     </div>
     <div class="control-group">
@@ -17,16 +17,17 @@
         <input type="checkbox" id="remember_me" name="remember_me" ng-model="session.remember_me"> Remember Me
       </label>
     </div>
+		<div class="error-message" ng-show"loginError">{{loginErrorMessage}}</div>
     <div class="control-group">
       <div class="controls">
-        <button type="submit" class="btn">Login</button>
+        <button type="submit" class="btn" ng-disabled="myForm.$invalid">Login</button>
       </div>
   </div>
   <hr>
   <tt>{{session}}</tt><br>
   <hr>
-  <tt>myForm.email.$valid = {{myForm.email.$valid}}</tt><br>
-  <tt>myForm.email.$error = {{myForm.email.$error}}</tt><br>
+  <tt>myForm.email.$valid = {{myForm.username.$valid}}</tt><br>
+  <tt>myForm.email.$error = {{myForm.username.$error}}</tt><br>
   <tt>myForm.password.$valid = {{myForm.password.$valid}}</tt><br>
   <tt>myForm.password.$error = {{myForm.password.$error}}</tt><br>
   <tt>myForm.$valid = {{myForm.$valid}}</tt><br>

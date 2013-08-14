@@ -10,13 +10,14 @@
 </head>
 <body>
 	<div class="main-container" ng-controller="AppCtrl">
-	<div class="site-header">
-		<div class="logo">Digital Artists Collective</div><span ng-click="checkUser()">check</span>
-		<span ng-show="isAdmin()">I'm an admin!</span>
-		<div class="user-nav" ng-controller="SessionCtrl">
-    	<span ng-show="signedIn">
-				Signed in as {{currentUser.username}}. Not you?
-				<span ng-click="destroy()">Sign Out</span>
+	<div class="filler"></div>
+	<div class="header-container">
+		<div class="site-header">
+			<div class="logo-text"><img src="<%= image_path "dac-logo-text.png" %>"></div>
+			<div class="user-nav" ng-controller="UserNavCtrl">
+    		<span ng-show="signedIn">
+					Signed in as {{currentUser.username}}. Not you?
+				<span ng-click="logout()">Logout</span>
 			</span>
 			<span ng-hide="signedIn">
 				<a href="/register">Sign Up</a> or <a href="/login">Sign In</a>
@@ -24,13 +25,15 @@
 		</div>
 	</div>
 	<div class="player-header">
-		<span class="h-skipBack-btn" ng-click="skipBack()">Skip Back</span>
-		<span class="h-play-btn" ng-click="playPause()">Play</span>	
-		<span class="h-skipFwd-btn" ng-click="skipFwd()"> Skip Fwd</span>
+		<span class="player-controls">
+			<span class="h-skipBack-btn" ng-click="skipBack()">Skip Back</span>
+			<span class="h-play-btn" ng-click="playPause()">Play</span>	
+			<span class="h-skipFwd-btn" ng-click="skipFwd()"> Skip Fwd</span>
+		</span>
 	</div>
-	<dac-playlist></dac-playlist>
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+	</div>
+	<div class="logo"><img src="<%= image_path "dac-logo.png" %>"></div>
+	<!--<dac-playlist></dac-playlist> -->
 	<%= yield %>
 	</div>
 </body>

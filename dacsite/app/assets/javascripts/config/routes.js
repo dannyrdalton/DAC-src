@@ -4,7 +4,6 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     abstract: true,
     views: {
       "": {
-        controller: 'AppCtrl',
         templateUrl: '/assets/layouts/default.html.erb'
       }
     }
@@ -24,6 +23,14 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 			"": {
 				controller: 'RegistrationCtrl',
 				templateUrl: '/assets/registrations/new.html.erb'
+			}
+		}
+	}).state('register.success', {
+		parent: 'default',
+		url: '/registration-success',
+		views: {
+			"": {
+					templateUrl: '/assets/registrations/success.html.erb'
 			}
 		}
 	}).state('forgot password', {
