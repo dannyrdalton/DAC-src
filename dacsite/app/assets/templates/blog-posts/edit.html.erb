@@ -1,0 +1,23 @@
+<h2>Edit Blog Post</h2>
+
+<form name="blogPostForm" ng-submit="update()">
+  <div class="control-group">
+    <label class="control-label" for="title">Title</label>
+    <div class="controls">
+      <input type="text" id="title" name="title" placeholder="Title" ng-model="blogPost.title" required>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="body">Body</label>
+    <div class="controls">
+      <textarea id="body" name="body" placeholder="Body" ng-model="blogPost.body" required></textarea>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="tags">Tags (separated by commas)</label>
+    <div class="controls">
+      <input type="text" id="tags" name="tags" placeholder="Tags" ng-model="blogPost.tags" required>
+    </div>
+  </div>
+  <input type="submit" name="commit" value="Submit Post">
+</form>

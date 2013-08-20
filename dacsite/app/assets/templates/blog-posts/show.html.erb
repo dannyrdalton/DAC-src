@@ -1,7 +1,10 @@
 <div class="main-blog-feed">
 	<div class="blog-post-container">
 		<div class="blog-post-container">	
-			<div class="blog-post-title">{{blogPost.title}}</div>
+			<div class="blog-post-title">
+				{{blogPost.title}}
+				<span class="edit-blog-post" dac-authorized="moderator, admin"><a href="/edit-blog-post">Edit Post</a></span>
+			</div>
 			<div class="blog-post-image-container" ng-repeat="track in blogPost.tracks">
     		<a ng-href="{{track.url}}"><img ng-src="{{track.artwork_url}}"></a>
       	<div class="social-links">

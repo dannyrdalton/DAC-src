@@ -4,7 +4,7 @@ app.controller('CommentCtrl', ['$scope', '$state', '$http', 'Comment', 'BlogPost
 		$scope.comment = {};	
 	
 		if($state.current.name = 'blog post') {
-			$scope.comments = Comment.query({ blog_post_id: $scope.blogPost.id });
+			$scope.comments = Comment.query({ blog_post_id: BlogPost.currentPost.id });
 		}
 
 		$scope.create = function() {

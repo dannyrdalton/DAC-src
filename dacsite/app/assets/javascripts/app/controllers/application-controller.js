@@ -1,17 +1,18 @@
-app.controller('AppCtrl', ['$scope', '$http', '$cookieStore', 'MusicPlayer', 'Playlist', 
-function($scope, $http, $cookieStore, MusicPlayer, Playlist) {
+app.controller('AppCtrl', ['$scope', '$http', '$cookieStore', 'Session', 'MusicPlayer', 'Playlist', 
+function($scope, $http, $cookieStore, Session, MusicPlayer, Playlist) {
 
-	$scope.currentUser = $cookieStore.get('_dac_user');
-	
+	$scope.currentUser = Session.currentUser;
+
 	//set MusicPlayerPlaylist
-	if ($scope.currentUser) {
+	if (Session.signedIn) {
 		Playlist.get({ id: $scope.currentUser.playlist_id }, function(response) {
 			var playlist = JSON.parse(response.playlist);
       console.log(playlist);
 			MusicPlayer.setInitialPlaylist(playlist);	
 		});
 	}
-		
+	
+	//for testing	
 	$scope.checkUser = function() {
 		console.log($scope.currentUser);
 		console.log(MusicPlayer.getPlaylist());
@@ -37,11 +38,9 @@ function($scope, $http, $cookieStore, MusicPlayer, Playlist) {
 	//events
 	$scope.$on('login', function(event, data) {
 		if (data.success) {
-			$scope.currentUser = $cookieStore.get('_dac_user');
+			$scope.currentUser = Session.currentUser;
 			Playlist.get({ id: $scope.currentUser.playlist_id }, function(response) {
 				var playlist = JSON.parse(response.playlist);
-				console.log('playlist from server');
-				console.log(playlist);
 				MusicPlayer.setInitialPlaylist(playlist);
 			});
 		}

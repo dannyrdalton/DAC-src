@@ -3,6 +3,7 @@ Dacsite::Application.routes.draw do
 	devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login", :sign_out => "logout" }, :controllers => { :sessions => "sessions", :registrations => "registrations", :passwords => "passwords", :confirmations => "confirmations" }
 	
 	namespace :api do
+		get '/users/authorize', to: 'users#authorize'
 		resources :blog_posts do
 			member do
 				get 'like'
@@ -29,6 +30,7 @@ Dacsite::Application.routes.draw do
 	match '/blog' => 'home#index', via: [:get]
 	match	'/blog/*page' => 'home#index', via: [:get]
 	match '/new-blog-post' => 'home#index', via: [:get]	
+	match '/edit-blog-post' => 'home#index', via: [:get]
 	# The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 	# get 'blog' => 'blog_posts#index'

@@ -1,24 +1,36 @@
 app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stateParams', '$cookieStore', 'BlogPost', 
 	function($scope, $http, $location, $state, $stateParams, $cookieStore, BlogPost) {
+		
 		$scope.blogPosts = {};
 		$scope.blogPost = {};
-		
+	
+		//get blog posts	
 		if ($state.current.name === 'blog') {
 			$scope.blogPosts = BlogPost.query();
 			BlogPost.currentPost = null;
 		}
-
-		if ($state.current.name === 'blog post') {
+		
+		//get individual blog posts
+		if ($state.current.name === 'blog post' || $state.current.name === 'edit blog post') {
 			if (!BlogPost.currentPost) {
-				$scope.blogPost = $cookieStore.get('_dac_current_blog_post');
-			} else {
-				$scope.blogPost = BlogPost.get({ id: BlogPost.currentPost.id });
+				BlogPost.currentPost = $cookieStore.get('_dac_current_blog_post');
 			}
-			console.log($scope.blogPost);
+			$scope.blogPost = BlogPost.currentPost;
+			
+			if ($state.current.name === 'edit blog post') {
+				//convert tags from array to string for display in input
+				var tagString = "";
+				$scope.blogPost.tags.forEach( function(tag, index) {
+					tagString += tag.name;
+					if (index !== $scope.blogPost.tags.length - 1) tagString += ', ';
+				});
+				$scope.blogPost.tags = tagString;
+			
+			}
 		}
-
+		
+		//get blog posts by a certain tag
 		if ($state.current.name === 'blog post tag') {
-			console.log('boop');
 			$http.get('/api/blog_posts/showTag?tagName=' + $stateParams.tagName)
 			.success(function(data, status, headers, config) {
 				$scope.blogPosts = data;
@@ -28,7 +40,7 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
 		//create blog post
 		$scope.create = function() {
   		tags = $scope.blogPost.tags.split(', ');
-			return BlogPost.save({}, {
+			BlogPost.save({}, {
     		blog_post: {
 					user_id: $scope.currentUser.id,
       		title: $scope.blogPost.title,
@@ -41,7 +53,6 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
     		},
 				tags: tags
   		}, function(response) {
-				console.log(response);
    			$state.transitionTo('blog');
   		}, function(response) {
 				console.log(response);
@@ -50,19 +61,20 @@ app.controller('BlogPostCtrl', ['$scope', '$http', '$location', '$state', '$stat
 
 		//update blog post
 		$scope.update = function() {
-  		return $http.put("/api/blog_posts/" + $scope.blogPost.id + '.json', {
+  		$http.put("/api/blog_posts/" + $scope.blogPost.id + '.json', {
     		blog_post: {
       		title: $scope.blogPost.title,
-      		body: $scope.blogPost.body
-    		}
+      		body: $scope.blogPost.body,
+    		},
+				tags: $scope.blogPost.tags
   		}).then((function(response) {
-    		return $location.path("/blog");
+    		return $state.transitionTo('blog');
   		}), function(error) {});
 		};
 		
 		//delete blog post
 		$scope.destroy = function(id) {
-  		return $http['delete']('/api/blog_posts/' + id + '.json').then((function(response) {
+  		return $http.delete('/api/blog_posts/' + id + '.json').then((function(response) {
     		return $http.get('/api/blog_posts.json').then((function(response) {
       		return $scope.blogPosts = response.data;
     		}), function(error) {});

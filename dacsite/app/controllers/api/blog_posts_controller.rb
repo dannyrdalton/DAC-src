@@ -21,7 +21,7 @@ class Api::BlogPostsController < Api::BaseController
 	end
 
 	def update
-		respond_with :api, BlogPost.update(params[:id], params[:blog_post])
+		respond_with :api, BlogPost.update(params[:id], blog_post_params)
 	end
 
 	def destory

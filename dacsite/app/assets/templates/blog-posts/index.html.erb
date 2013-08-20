@@ -1,27 +1,28 @@
-<div class="main-blog-feed">
-	<a href="/new-blog-post">Create blog post</a><br/>
-	<div class="blog-post-container" ng-repeat="blogPost in blogPosts">
-		<div class="blog-post-container">
-      <div class="blog-post-title" ng-click="goToPageForPost(blogPost)">{{blogPost.title}}</div>
-      <div class="blog-post-image-container" ng-repeat="track in blogPost.tracks">
-       	<img ng-src="{{track.artwork_url}}" ng-click="playFromBlog(track)">
-       	<div class="social-links">
-          <div class="sndcld-link"><a href="{{track.url}}"><img src="<%= image_path("soundcloud-logo.png") %>"></a></div>
-          <div class="fb-link"><img src="<%= image_path("fb-logo.jpg") %>"></div>
-          <div class="twitter-link"><img src="<%= image_path("twitter-logo.png") %>"></div>
-        </div>
-      </div>
-      <div class="blog-post-body">
-				{{blogPost.body}}<br/>
-				Tags: <div ng-repeat="tag in blogPost.tags"><div><a ng-href="/blog/tags/{{tag.name}}">{{tag.name}}</a></div></div>
-			</div>
-      <div class="blog-post-utilities" ng-repeat"track in blogPost.tracks">
-        <div class="play-btn" ng-click="play(track)"><img src="<%= image_path("play.png") %>"></div>
-        <div class="like-btn" ng-click="like(blogPost)"><img src="<%= image_path("like.png") %>"></div>
-        <div class="add-btn"><img src="<%= image_path("add.png") %>"></div>
-      </div>
-      <div style="clear: both; height: 0;"></div>
-    </div>
-    <div style="clear: both; height: 0;"></div>
+<div class="row-fluid">
+	<div id="main-blog-feed" class="span9">
+		<div dac-authorized="moderator, admin"><a href="/new-blog-post">Create blog post</a></div><br/>
+		<div ng-repeat="blogPost in blogPosts">
+			<div class="blog-post-container">
+				<div class="blog-post-title" ng-click="goToPageForPost(blogPost)">{{blogPost.title}}</div>
+				<div class="row-fluid">
+					<div class="span3 blog-post-image-container" ng-repeat="track in blogPost.tracks">
+						<img ng-src="{{track.artwork_url}}" ng-click="playFromBlog(track)">
+					</div>
+					<div class="span8 blog-post-body">
+						{{blogPost.body}}<br/>
+					</div>
+					<div class="span1 blog-post-utilities" ng-repeat"track in blogPost.tracks">
+        		<div class="play-btn" ng-click="play(track)"><img src="<%= image_path("play.png") %>"></div>
+        		<div class="like-btn" ng-click="like(blogPost)"><img src="<%= image_path("like.png") %>"></div>
+        		<div class="add-btn"><img src="<%= image_path("add.png") %>"></div>
+      		</div>
+				</div>
+				<div class="row-fluid">
+					<span ng-repeat="tag in blogPost.tags">
+						<a ng-href="/blog/tags/{{tag.name}}">{{tag.name}}</a>
+					</div>
+				</div>	
+			</div>		
+		</div>
 	</div>
 </div>

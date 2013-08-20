@@ -1,10 +1,11 @@
 app.service('MusicPlayer', ['$rootScope', '$cookieStore',
 	function($rootScope, $cookieStore) {
 		self = this;
+		
 		SC.initialize({
       client_id: 'f116577ada558b6ab3ddc756e60cbc71'
     });
-		
+	/*	
 		$(document).keyup(function(event) {
 			if (event.keyCode === 32) {
 				self.playPause();
@@ -15,7 +16,7 @@ app.service('MusicPlayer', ['$rootScope', '$cookieStore',
 			if (event.keyCode === 32) {
 				event.preventDefault();
 			}
-		});
+		}); */
 		
 		//private variables
 		var playlist = [];
@@ -23,8 +24,6 @@ app.service('MusicPlayer', ['$rootScope', '$cookieStore',
 		var currentTrack = {};
 		var currentSound = {};
 		var playing = false;
-
-		//watchers
 
 		//helper functions
 		//for a track that is not already on the playlist (or is on the playlist and played from the blog)

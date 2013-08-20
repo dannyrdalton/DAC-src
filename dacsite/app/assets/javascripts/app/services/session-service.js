@@ -20,6 +20,7 @@ app.service('Session', ['$rootScope', '$cookieStore', 'UserSession', 'UserRegist
 				.success(function(data, status, headers, config) {
 					data.user.roles = data.roles;
 					data = data.user;
+					this.currentUser = data.user;
 					$cookieStore.put('_dac_user',	data);
 					this.signedIn = true;
 					this.userSession = new UserSession({ username: '', password: '', remember_me: false });

@@ -1,17 +1,12 @@
 /* Place all the styles related to the BlogPosts controller here.
    They will automatically be included in application.css. */
-.main-blog-feed {
-	min-width: 320px;
-	max-width: 800px;
-	margin: 0px auto;
+#main-blog-feed {
 	background: rgb(200, 200, 200);
 	padding: 10px;
 }
 
 .blog-post-container {
-	width: 100%;
-	min-width: 320px;
-	margin-bottom: 55px;
+	margin-bottom: 15px;
 }
 
 .blog-post-container .blog-post-title {
@@ -23,14 +18,16 @@
 	margin-bottom: 22.5px;
 }
 
-.blog-post-image-container {
-	float: left;
-	position: relative;
-	width: 150px;
-	margin: 0 0 8px 10px;
+.blog-post-container .blog-post-title .edit-blog-post {
+	float: right;
+	font-size: 0.6em;
 }
 
-.blog-post-image-container .social-links {
+.blog-post-image-container {
+
+}
+
+/*.blog-post-image-container .social-links {
 	position: absolute;
 	top: 150px;
 	width: 150px;
@@ -57,18 +54,12 @@
 
 .blog-post-image-container:hover .social-links {
 	display: block;
-}
+} */
 
 .blog-post-body {
-	display: inline-block;
-	min-width: 300px;
-	max-width: 525px;
-	margin-left: 20px;
 }
 
 .blog-post-utilities {
-	float: right;
-	width: 50px;
 }
 .blog-post-utilities img {
 	width: 50px;

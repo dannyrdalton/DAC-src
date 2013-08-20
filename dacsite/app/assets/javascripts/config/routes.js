@@ -87,6 +87,15 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 				templateUrl: '/assets/blog-posts/new.html.erb'
 			}
 		}
+	}).state('edit blog post', {
+		parent: 'default',
+		url: '/edit-blog-post',
+		views: {
+			"": {
+				controller: 'BlogPostCtrl',
+				templateUrl: '/assets/blog-posts/edit.html.erb'
+			}
+		}
 	}).state('blog post', {
 		parent: 'default',
 		url: '/blog/:parameterizedTitle',
