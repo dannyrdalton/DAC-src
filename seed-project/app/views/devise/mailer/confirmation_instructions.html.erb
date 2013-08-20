@@ -1,0 +1,5 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://ec2-54-213-8-244.us-west-2.compute.amazonaws.com:3000/confirm-email/<%= @resource.confirmation_token %>">Confirm my account</p>

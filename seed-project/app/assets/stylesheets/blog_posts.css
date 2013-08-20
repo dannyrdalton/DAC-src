@@ -1,0 +1,67 @@
+/* Place all the styles related to the BlogPosts controller here.
+   They will automatically be included in application.css. */
+#main-blog-feed {
+	background: rgb(200, 200, 200);
+	padding: 10px;
+}
+
+.blog-post-container {
+	margin-bottom: 15px;
+}
+
+.blog-post-container .blog-post-title {
+	height: 45px;
+	line-height: 45px;
+	background: rgb(156, 75, 14);
+	font-size: 1.7em;
+	padding-left: 10px;
+	margin-bottom: 22.5px;
+}
+
+.blog-post-container .blog-post-title .edit-blog-post {
+	float: right;
+	font-size: 0.6em;
+}
+
+.blog-post-image-container {
+
+}
+
+/*.blog-post-image-container .social-links {
+	position: absolute;
+	top: 150px;
+	width: 150px;
+	height: 50px;
+	background: rgb(240, 240, 240);
+	display: none;
+}
+
+.social-links .sndcld-link, .social-links .fb-link, .social-links .twitter-link {
+	width: 45px;
+	display: inline-block;
+}
+
+.social-links .sndcld-link {
+}
+
+.social-links .fb-link {
+	padding: 2.5px 0 0 2.5px;
+}
+
+.social-links .twitter-link {
+	
+}
+
+.blog-post-image-container:hover .social-links {
+	display: block;
+} */
+
+.blog-post-body {
+}
+
+.blog-post-utilities {
+}
+.blog-post-utilities img {
+	width: 50px;
+	float: right;
+}

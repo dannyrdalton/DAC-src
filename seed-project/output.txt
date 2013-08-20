@@ -1,0 +1,44 @@
+
++BRAKEMAN REPORT+
+
+Application path: /home/ec2-user/dac/DAC-src/dacsite
+Rails version: 4.0.0
+Brakeman version: 2.1.0
+Started at 2013-07-23 05:55:01 +0000
+Duration: 7.318489732 seconds
+Checks run: BasicAuth, ContentTag, CrossSiteScripting, DefaultRoutes, Deserialize, DigestDoS, EscapeFunction, Evaluation, Execute, FileAccess, FilterSkipping, ForgerySetting, JRubyXML, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, QuoteTableName, Redirect, Render, ResponseSplitting, SQL, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionSettings, SingleQuotes, SkipBeforeFilter, StripTags, SymbolDoS, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, YAMLParsing
+
+
++SUMMARY+
+
++-------------------+-------+
+| Scanned/Reported  | Total |
++-------------------+-------+
+| Controllers       | 2     |
+| Models            | 2     |
+| Templates         | 12    |
+| Errors            | 1     |
+| Security Warnings | 1 (1) |
++-------------------+-------+
+
++-----------------+-------+
+| Warning Type    | Total |
++-----------------+-------+
+| Session Setting | 1     |
++-----------------+-------+
++Errors+
++---------------------------------------------------+------------------------->>
+| Error                                             | Location                >>
++---------------------------------------------------+------------------------->>
+| (string):13 :: parse error on value "$end" ($end) | could not parse /home/ec>>
++---------------------------------------------------+------------------------->>
+
+
++SECURITY WARNINGS+
+
++------------+-------+--------+-----------------+----------------------------->>
+| Confidence | Class | Method | Warning Type    | Message                     >>
++------------+-------+--------+-----------------+----------------------------->>
+| High       |       |        | Session Setting | Session secret should not be>>
++------------+-------+--------+-----------------+----------------------------->>
+
