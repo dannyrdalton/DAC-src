@@ -1,24 +1,35 @@
 /* Place all the styles related to the BlogPosts controller here.
    They will automatically be included in application.css. */
 #main-blog-feed {
-	background: rgb(200, 200, 200);
 	padding: 10px;
 }
 
 .blog-post-container {
+	background: rgb(73, 71, 72);
 	margin-bottom: 15px;
 }
 
-.blog-post-container .blog-post-title {
+.blog-post-inner {
+	display: inline-block;
+	width: 95%;
+	margin-left: 5%;
+	background: rgb(220, 220, 220);
+}
+
+.blog-post-poster {
+	width: 95%;
+}
+
+.blog-post-title {
 	height: 45px;
 	line-height: 45px;
 	background: rgb(156, 75, 14);
 	font-size: 1.7em;
 	padding-left: 10px;
-	margin-bottom: 22.5px;
+	margin-bottom: 15px;
 }
 
-.blog-post-container .blog-post-title .edit-blog-post {
+.edit-blog-post {
 	float: right;
 	font-size: 0.6em;
 }

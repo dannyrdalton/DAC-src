@@ -1,0 +1,111 @@
+.container-fluid {
+  padding: 0;
+}
+
+.row-fluid [class*="span"] {
+  margin: 0;
+}
+
+.row-fluid .span1 {
+  width: 8.33333333333333%;
+}
+
+.row-fluid .span2 {
+  width: 16.66666666666667%;
+}
+
+.row-fluid .span3 {
+  width: 25%;
+}
+
+.row-fluid .span4 {
+  width: 33.33333333333333%;
+}
+
+.row-fluid .span5 {
+  width: 41.66666666666667%;
+}
+
+.row-fluid .span6 {
+  width: 50%;
+}
+
+.row-fluid .span7 {
+  width: 58.33333333333333%;
+}
+
+.row-fluid .span8 {
+  width: 66.66666666666667%;
+}
+
+.row-fluid .span9 {
+  width: 75%;
+}
+
+.row-fluid .span10 {
+  width: 83.33333333333333%;
+}
+
+.row-fluid .span11 {
+  width: 91.66666666666667%;
+}
+
+.row-fluid .span12 {
+  width: 100%;
+}
+
+.row-fluid .offset1 {
+  margin-left: 8.33333333333333%;
+}
+
+.row-fluid .offset2 {
+  margin-left: 16.66666666666667%;
+}
+
+.row-fluid .offset3 {
+  margin-left: 25%;
+}
+
+.row-fluid .offset4 {
+  margin-left: 33.33333333333333%;
+}
+
+.row-fluid .offset5 {
+  margin-left: 41.66666666666667%;
+}
+
+.row-fluid .offset6 {
+  margin-left: 50%;
+}
+
+.row-fluid .offset7 {
+  margin-left: 58.33333333333333%;
+}
+
+.row-fluid .offset8 {
+  margin-left: 66.66666666666667%;
+}
+
+.row-fluid .offset9 {
+  margin-left: 75%;
+}
+
+.row-fluid .offset10 {
+  margin-left: 83.33333333333333%;
+}
+
+.row-fluid .offset11 {
+  margin-left: 91.66666666666667%;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding: 0
+  }
+  [role="main"] [class*="span"] {
+    width: 100%;
+  }
+  .sidebar [class*="span"] {
+    width: 100%;
+  }
+}
